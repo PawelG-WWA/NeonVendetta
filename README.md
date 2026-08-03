@@ -83,6 +83,7 @@ The game should be a simple shoot-em-up with a single level and a static backgro
 
 Number of enemies grows in time. Spawn 5 simple enemies first one after the other. After 5 kills, spawn two simple enmies at once. This is a practice period for a player. Think of the best possible algorithm for spawning new enemies, taking enemy toughness into account - do not spawn too many simple and too many strong enemies at once, find a balanced strategy.
 
+### Clarification - below are the answers for follow-up questions model asked before building
 The game ends when the player is being hit by the enemy.
 
 No side-scrolling but static background. The player can move around, but the background doesn't scroll. Also, the player can move only on reasonable space - so, on the road, on the pavement etc.. The player cannot fly around the scene. But the enemies can be spawned inside the buildings. The player should be able to enter the building. The scene/view eshouldn't change, the player still need to see the same background, only avatar enters the building and can be seen through windows. The player can walk up the floors with ladders seen outside or can take the stairs inside the building - but the stairs have to be seen through windows so that the player knows there are stairs.
