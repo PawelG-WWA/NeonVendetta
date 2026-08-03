@@ -1,0 +1,8 @@
+{
+  "name": "neon-vendetta",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/physics.test.js && node tests/player.test.js && node tests/collisions.test.js && node tests/equipment.test.js && node tests/enemies.test.js && node tests/facade.test.js"
+  }
+}

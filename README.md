@@ -1,0 +1,101 @@
+# Neon Vendetta
+
+**Description:**
+
+Everything - except this README :) - in this repo is AI generated. I created this project for testing and learning purposes only.
+
+My goal here was to check if I could generate a game together will all the assets, physics and AI to achieve compelling results.
+
+I used Kimi K3 for code generation and review and Big-Pickle, which is free, for requesting assets generation from Grok Imagine.
+
+I didn't use the 'Gauntlet Loop', which is popular lately, because I wanted to try a different approach and wanted to test the model in a different way.
+
+Although it's tempting to use the aforementioned prompting style, it's also expensive - costs of available examples are estimated around $500+, which way too much for my wallet and current needs.
+
+Also, the Gauntlet Loop (GL) is known to be effective when the prompt clearly states which game should be cloned, so with each iteration the clone gets closer to the example being cloned.
+
+It shows how good the model is at cloning the known example and I must admit that it's impressive.
+
+But I wanted to check how the model would perform under different conditions.
+
+My prompt - which you can find below - stated how the art&style should look like, but it also introduced a single thing that reqiures some amount of creativity.
+
+While the game has a static background, the player is allowed to get into the buildings. There are two ways of walking up and down the floors - by the ladder and by taking the stairs.
+
+It occured that this task was challenging for the model. As a reasonable being, I assumed that the player's and enemies' avatars will partially be visible through the windows. Model couldn't handle that though. All the avatars can be seen through the walls, altohugh the model handled walking between floors perfectly fine - one can easily tell they changed the floor.
+
+It's funny though that the model decided to use the same animation for taking the stairs as well as for climbing the ladder.
+
+There is also a constant flickering effect of everything that moves across the scene, which is really bad.
+
+All the basic gameplay mechanics, physics and collisions are working fine.
+
+The model was able to generate a satisfying strategy for spawning enemies, but sometimes they are being spawned directly onto the scene, although the instruction says it shouldn't happen.
+
+The code is not messy and seems to be well organized. It even looks like it can be maintained by a human.
+
+It's worth noting that the model - the builder as well as the reviewer - was instructed to align with Entity Component System architecture. Some say that one shouldn't suggest any architecture upfront, but my little experience tells me that if you won't do this at the very beginning you will end up with totally unmaintainable code. it's completely up to you how you prefer to work with AI though.
+
+The model used for planning, building and reviewing was Kimi K3.
+
+The agent: Opencode, with model variation set to low.
+
+The model used for generating assets - Big-Pickle (free), which was following the instructions from .prompt files defined outside of this repo (I defined all the subagents and primary agent in .opencode configuration).
+
+Asset generation model was exploring xAI-docs MCP to find out how to generate images, then it used Grok Imagine to generate the assets (sprites, animation frames, background etc.)
+
+The session took 11h 36m and the cost was $42.
+
+**Conclusion:**
+
+Today's models, Kimi K3 especially, are much better than the previous ones in generating small, but full, 2D games.
+
+It generated complete, playable demo in a sense that you can start the game and use its core mechanics to finish it. This is impressive to some extent. I, as a professional programmer not familiar with programming video games, wouldn't be able to write the game in the same amount of time - AI is simply out-coding me.
+
+For the professional game developer, such game is probably doable in a reasonable amount of time and they would probably achieve better results than me with AI, but the purpose of this experiment was not showing that AI is better than professional developers, nor that the professional developers are better than gen-AI in writing games. As stated before, this project was created only for my learning purposes and to satisfy my curiosity.
+
+I achieved much more much, faster than one and two years ago with other models. I'm not sure though if the same effect was not achievable with older models, as my knowledge about working with AI and the tools I got used to are much different today than they were in the past. Could I do the same with GPT-4o or Opus 4? I will never know and I will never try, as I am not interested in testing old models.
+
+Is it possible today to create a game with AI? I am not sure yet, but I don't think it is right now.
+
+My game feels totally unfinished and unfinished games are not fun. The examples I see on the Internet, also those generated by the Gauntlet Loop also feels unfinished and are just clones and copies, and clones and copies don't sell.
+
+It looks like the games generated with AI require a lot of work and effort to be complet. I also think that for models it's easier to generate something from a graphical example rather than from a text.
+
+That would mean that for mini-demos of how the game works it's better to create an animation or a presentation. All the flaws that I can see in this micro-project are telling me that it's still critical to work with professional artists, developers, architects and testers to create a full game, as you cannot generate EXACTLY what you want, just something what - to some extent - only resembles what you wanted to create. It means that there might not be too much sense even in trying to finish/polish AI-generated game as it will be harder and harder to achieve exactly what you want - you are getting closer to your goals asymptotically, which means you will never reach the desired result without manual tuning, which is becoming harder and harder with every AI-change. One must find a balance to be successful.
+
+All of this seems to be current as of August 2026.
+
+For sure, uncle Bob is right - if you want to build with AI, you need to put a lot of effort into creating boundaries in which model can operate.
+
+Otherwise you are just pressing buttons on a slot machine.
+
+Will AI generate AAA game someday? I don't know, but we are far from that, that's for sure.
+
+Meanwhile, practice leetcode, interviews and learn programming.
+
+**Prompt:**
+I want you to build a shoot-em-up game. It should perfectly resemble 16-bit era games in its art and style. Every single thing needs to be done in AAA quality, from objects collisions to anything you can think of.
+
+Fan out sub-agents. Loop through each task up to three times in a given plan to ensure the quality. @reviewer subagent should be a really harsh critic, if the game doesn't look triple-A, it should keep going.
+
+The game should be a simple shoot-em-up with a single level and a static background. Have @artist sub-agent generate required assets. The player cannot go outside the bounds of the background. Enemies are coming into the scene from outside of it. The player can shoot. When a shot hits the enemy, it damages the enemy. There are three types of enemies. Simple enemy (enemy avatar) takes one shot and dies. Medium enemy (enemy avatar 2) takes three shots and dies. The toughest enemy (enemy avatar 3) takes 5 shots and dies. Machine gun fires 3 shots per second, then enters cooldown period for 500ms.
+
+Number of enemies grows in time. Spawn 5 simple enemies first one after the other. After 5 kills, spawn two simple enmies at once. This is a practice period for a player. Think of the best possible algorithm for spawning new enemies, taking enemy toughness into account - do not spawn too many simple and too many strong enemies at once, find a balanced strategy.
+
+The game ends when the player is being hit by the enemy.
+
+No side-scrolling but static background. The player can move around, but the background doesn't scroll. Also, the player can move only on reasonable space - so, on the road, on the pavement etc.. The player cannot fly around the scene. But the enemies can be spawned inside the buildings. The player should be able to enter the building. The scene/view eshouldn't change, the player still need to see the same background, only avatar enters the building and can be seen through windows. The player can walk up the floors with ladders seen outside or can take the stairs inside the building - but the stairs have to be seen through windows so that the player knows there are stairs.
+The player shoulds with left/right arrows and moves with W A S D keys.
+
+
+There are two building the player can enter. One with three floors, another one with 5 floors. No, the enemies cannot climb. If the player is inside the building, enemies outside just walk around the scene can move away, vanishing totally (they don't come back, when enemy is outside the scene after walking out, it vanishes, no points are given to the player and new enemy is spawned). Ladder is on 5 floor building, 3 floor building has no ladder.
+
+Enemies can climb ladders and taking the stairs. If an enemy is taking the stairs and becomes invisible for some time it cannot damage the player, but the enemy on the ladder crossing its path with the player can damage the player.
+
+Request additional frames if needed, for example for climbing the ladder etc.
+
+Add shooting direction for all directional keys (Up Down Left Right) so that the player can shoot in each direction.
+
+The player can shoot up and down while climbig the ladder. No diagonal shooting is allowed.
+
