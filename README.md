@@ -1,6 +1,6 @@
 # Neon Vendetta
 
-##Description:
+## Description:
 
 Everything - except this README :) - in this repo is AI generated. I created this project for testing and learning purposes only.
 
@@ -46,7 +46,7 @@ Asset generation model was exploring xAI-docs MCP to find out how to generate im
 
 The session took 11h 36m and the cost was $42.
 
-##Conclusion
+## Conclusion
 
 Today's models, Kimi K3 especially, are much better than the previous ones in generating small, but full, 2D games.
 
@@ -74,7 +74,7 @@ Will AI generate AAA game someday? I don't know, but we are far from that, that'
 
 Meanwhile, practice leetcode, interviews and learn programming.
 
-##Prompt
+## Prompt
 I want you to build a shoot-em-up game. It should perfectly resemble 16-bit era games in its art and style. Every single thing needs to be done in AAA quality, from objects collisions to anything you can think of.
 
 Fan out sub-agents. Loop through each task up to three times in a given plan to ensure the quality. @reviewer subagent should be a really harsh critic, if the game doesn't look triple-A, it should keep going.
